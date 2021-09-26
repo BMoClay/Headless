@@ -3,39 +3,27 @@ interface Person {
     name: string
 }
 
-type CustomArray<T> = {
-    [index: number]: T
-}
-
-// ["apples", "oranges"][1]
-// this would return oranges because its at the index of 1
-
-// type CustomObject = {
-//     // [index: string]: string
-//     // could also be [key: string]: string
-//     // can be whatever you like
-//     // or could be 
-//     [key: string]: string | number | Person
-// }
-
-// or if you would like to make a generic from it (from CustomObject)
-type CustomObject<T = any> = {
-    [key: string]: T
-}
-
-// then this will throw an error below w CustomObject invocation so neet to adjust custom
-// object CustomObject to have a default value
 
 export default function play() {
 
-   const person: CustomObject = {
-       "age": 23,
-       "name": "Ben",
-       person: {
-           name: "Filip"
-       }
-   }
+  function logger(...args: any[]) {
+      return "hello World"
+  }
+  // implicity logger is a type of string u can check by hovering over
   
+  const kindaLogger: typeof logger = (name: string, age: number) => "Hi Guys"
+
+  const person = {
+      name: "filip",
+      age: 33
+  }
+  // now below the person2 will get the basic structure from person defined above
+  const person2: typeof person = {
+      name: "jon",
+      age: 35
+  }
+
+  kindaLogger("", 20)
 } 
 
 
