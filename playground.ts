@@ -3,33 +3,39 @@ interface Person {
     name: string
 }
 
-
-// type CustomArray = { 
-//     [index: number]: string
-// }
-
-// type CustomArray<T = any> = {  // could also be default value like string <T = string>
-//     [index: number]: T
-// }
-
-//could also do the above functionality in the export below by not defining the T default
-// value above, but rather below in the function line 24
-
 type CustomArray<T> = {
     [index: number]: T
 }
 
+// ["apples", "oranges"][1]
+// this would return oranges because its at the index of 1
+
+// type CustomObject = {
+//     // [index: string]: string
+//     // could also be [key: string]: string
+//     // can be whatever you like
+//     // or could be 
+//     [key: string]: string | number | Person
+// }
+
+// or if you would like to make a generic from it (from CustomObject)
+type CustomObject<T = any> = {
+    [key: string]: T
+}
+
+// then this will throw an error below w CustomObject invocation so neet to adjust custom
+// object CustomObject to have a default value
+
 export default function play() {
 
-    const items: CustomArray<string> = ["1","2","3"]
-    const items2: CustomArray<number> = [1,2,3]
-    // const items: CustomArray = ["1","2","3"]
-
-    //type Single = CustomArray[number]
-    // accessing type CustomArray information from line 7,8
-
-    //if you want to make generic arrays look to line 11,12 <T>
-
+   const person: CustomObject = {
+       "age": 23,
+       "name": "Ben",
+       person: {
+           name: "Filip"
+       }
+   }
+  
 } 
 
 
