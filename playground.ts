@@ -1,56 +1,21 @@
 
 
-// interface Person {
-//     name: string,
-//     age: number
-// }
-
-class Person {
-    name: string
-    age?: number
-
-    constructor(name: string, age: number) {
-        this.name = name;
-        this.age = age;
-    }
-}
-
-
-// interface PersonLoggerFn {
-//     (name: string, age: number): string
-// }
-
-type PersonLoggerFn = (name: string, age?: number) => string
 
 export default function play() {
-    const name: string = "Filip"
-    const age = 30
+    //the two ways you can create types for arrays
+    // const names: string[] = ["Filip", "giu"]
+    // const numbers: Array<number> = [1,2,3,4,5]
 
-    const john: Person = {
-        name:"Biell"
+    const random = Math.random() > 0.5 ? "hello" : [1,2]
+
+    if (typeof random === 'string') {
+        const upper = random.toUpperCase()
+    } else {
+        console.log(random)
     }
 
 
-    const logPersonInfo: PersonLoggerFn = (
-        personName: string, personAge: number = 0
-    ): string => {
-        const info = `Name: ${personName}, age: ${personAge}`
-        console.log(info)
-        return info
-    }
-
-    function logPersonInfo2(person: Person) {
-        // const info = "Name: " + personName + ", age:" + personA this could be written easier using interpolation:
-        const info = `Name: ${person.name}, age: ${person.age}`
-        console.log(info)
-        return info
-    }
-
-    const log = logPersonInfo(name)
-
-    const person = new Person("Edwarddd", 45)
-
-    logPersonInfo2(person)
+    console.log(random.length)
 }
 
 
