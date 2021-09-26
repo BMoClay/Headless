@@ -1,35 +1,41 @@
 
-interface Person {
-    name: string
-    age: number
-    grades: number[]
+
+
+export default async function play() {
+
+    type Greeting = { message: string }
+
+    type InferHelloProps<T> = T extends () => Promise<{props: infer Props}>
+     ? Props 
+     : never
+
+    const getHelloProps = async function() {
+        const greeting: Greeting = { message: "Hi Friends!"}
+    
+
+        return{
+            props: {
+                greeting,
+                data: {
+                    cars: ["car1", "car2"]
+                }
+            }
+        }
+    } 
+    
+    function sayHello(props: InferHelloProps<typeof getHelloProps>) {
+        console.log(props.greeting)
+        // this isnt working???  AH because i needed to put async into the getHelloProps
+    }
+
+    const data = await getHelloProps()
+    sayHello(data.props)
+
+    // good tool to use - debugger - go into console localhost3000 and refresh and in the 
+    // developers console will show up the debugger 
+    // const data = await getHelloProps()
+    // debugger
 }
 
-// type Logger = (param1: string, param2: number) => string
-// now w multiple generic types
-
-// type Logger<T, E, R> = (param1: T, param2: E) => R
-// could also be more specific - FP for first parameter, SP for second etc
-type Logger<
-        FP = string,
-        SP = number,
-        RT = string
-        > = (param1: FP, param2: SP) => RT
-
-export default function play() {
-
-    // const superLogger: Logger = (name: string, age: number) => {
-    const superLogger: Logger< string, number, string> = (name, age) => {
-        return "hello Wororld"
-    }
-
-    const logger: Logger = (brand, age) => {
-        return brand + age
-    }
-
-} 
 
 
-
-
- 
