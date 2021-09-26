@@ -13,21 +13,24 @@ interface AcademicPerson extends Person {
     publications: string[]
 }
 
+type Car = {
+    name: string
+} 
+
+type RaceCar = {
+    speed: number,
+} & Car & {mileage: number}
+
 export default function play() {
-    const person: AcademicPerson = {
-        name: "Filip",
-        age: 33,
-        publications: ["this one"]
-    }
-    const person2: BusinessPerson = {
-        name: "Filip",
-        age: 33,
-        salary: 33
-    }
+    const car: RaceCar = {
+        name: "toyota",
+        speed: 111,
+        mileage: 10
+    } 
 
-    function logPerson(person: Person) {}
+    function logCar(car: Car) {} 
 
-    logPerson(person2)
+    logCar(car)
 }
 
 
