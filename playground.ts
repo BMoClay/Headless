@@ -1,81 +1,33 @@
 
 
+interface Person {
+    name: string;
+    age: number
+}
+
+interface BusinessPerson extends Person {
+    salary: number
+}
+
+interface AcademicPerson extends Person {
+    publications: string[]
+}
 
 export default function play() {
-    //the two ways you can create types for arrays
-    // const names: string[] = ["Filip", "giu"]
-    // const numbers: Array<number> = [1,2,3,4,5]
-
-    const random = Math.random() > 0.5 ? "hello" : [1,2]
-
-    if (typeof random === 'string') {
-        const upper = random.toUpperCase()
-    } else {
-        console.log(random)
+    const person: AcademicPerson = {
+        name: "Filip",
+        age: 33,
+        publications: ["this one"]
+    }
+    const person2: BusinessPerson = {
+        name: "Filip",
+        age: 33,
+        salary: 33
     }
 
+    function logPerson(person: Person) {}
 
-    console.log(random.length)
+    logPerson(person2)
 }
 
 
-
-// ************************ Earlier Code ******************** //
-// // TS recommends using Interface over Types (but there is a very special place for Types)
-
-
-// // interfaces describe a data structure in a more natural way
-// // Describing objects:
-// interface Person {
-//     name: string,
-//     age: number
-// }
-// // Shipment, Orders, etc would be good choices to describe w Interface
-
-
-// // type aliases
-// // to describe function types (to describe data functions)
-// // type Person = {
-// //     name: string,
-// //     age: number
-// // }
-
-// type Data = string
-
-// export default function play() {
-//     const name: Data = "Filip"
-//     const age = 30
-//     // could also write the types here but dont need to 
-//     // const name: string = "Filip"
-//     // const age: number = 30
-//     // some people do this for readability
-
-//     const person: Person = {
-//         name:"Biell",
-//         age: 33
-//     }
-
-//     function logPersonInfo(personName: string, personAge: number) {
-//         // const info = "Name: " + personName + ", age:" + personAge
-//         // this could be written easier using interpolation:
-//         const info = `Name: ${personName}, age: ${personAge}`
-//         console.log(info)
-//         return info
-//     }
-
-//     function logPersonInfo2(person: Person) {
-//         // const info = "Name: " + personName + ", age:" + personAge
-//         // this could be written easier using interpolation:
-//         const info = `Name: ${person.name}, age: ${person.age}`
-//         console.log(info)
-//         return info
-//     }
-
-//     logPersonInfo(name, age)
-//     logPersonInfo2(person)
-//     // the below logPersonInfo invocations were tests re: type
-//     // before we specified the personName/Age type... 
-//     // the default type was 'any'. Now its string & number
-//     // logPersonInfo(true, false)
-//     // logPersonInfo(12, 12)
-// }
