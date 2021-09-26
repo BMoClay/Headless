@@ -1,38 +1,56 @@
 
 
-interface Person {
-    name: string,
-    age: number
+// interface Person {
+//     name: string,
+//     age: number
+// }
+
+class Person {
+    name: string
+    age?: number
+
+    constructor(name: string, age: number) {
+        this.name = name;
+        this.age = age;
+    }
 }
+
+
+// interface PersonLoggerFn {
+//     (name: string, age: number): string
+// }
+
+type PersonLoggerFn = (name: string, age?: number) => string
 
 export default function play() {
     const name: string = "Filip"
     const age = 30
 
-    const person: Person = {
-        name:"Biell",
-        age: 33
+    const john: Person = {
+        name:"Biell"
     }
 
-    function logPersonInfo(personName: string, personAge: number) {
-        // const info = "Name: " + personName + ", age:" + personAge
-        // this could be written easier using interpolation:
+
+    const logPersonInfo: PersonLoggerFn = (
+        personName: string, personAge: number = 0
+    ): string => {
         const info = `Name: ${personName}, age: ${personAge}`
         console.log(info)
         return info
     }
 
     function logPersonInfo2(person: Person) {
-        // const info = "Name: " + personName + ", age:" + personAge
-        // this could be written easier using interpolation:
+        // const info = "Name: " + personName + ", age:" + personA this could be written easier using interpolation:
         const info = `Name: ${person.name}, age: ${person.age}`
         console.log(info)
         return info
     }
 
-    logPersonInfo(name, age)
+    const log = logPersonInfo(name)
+
+    const person = new Person("Edwarddd", 45)
+
     logPersonInfo2(person)
-   
 }
 
 
