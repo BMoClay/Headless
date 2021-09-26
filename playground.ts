@@ -1,36 +1,19 @@
 
-
 interface Person {
-    name: string;
-    age: number
-}
-
-interface BusinessPerson extends Person {
-    salary: number
-}
-
-interface AcademicPerson extends Person {
-    publications: string[]
-}
-
-type Car = {
     name: string
-} 
+}
 
-type RaceCar = {
-    speed: number,
-} & Car & {mileage: number}
+type SingleType<T> = T extends any[] ? T[number] : T
 
 export default function play() {
-    const car: RaceCar = {
-        name: "toyota",
-        speed: 111,
-        mileage: 10
-    } 
 
-    function logCar(car: Car) {} 
+    type Type1 = SingleType<string[]>
+    type Type2 = SingleType<number[]>
+    type Type3 = SingleType<Person>
 
-    logCar(car)
-}
+    type Type4 = string[][number]
+} 
+
+
 
 
