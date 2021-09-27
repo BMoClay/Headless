@@ -1,4 +1,5 @@
-import { useEffect } from "react"
+
+import type { InferGetStaticPropsType } from "next"
 
 export async function getStaticProps() {
   const products = [1,2,3]
@@ -12,11 +13,14 @@ export async function getStaticProps() {
 }
 
 
-export default function Home() {
- 
+export default function Home({
+  products
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+
+
   return (
     <div>
-      Hello World!!
+      {products}
     </div>
   )
 }
