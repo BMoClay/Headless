@@ -1,6 +1,6 @@
 
 import { ApiConfig } from "@common/types/api";
-import { fetchApi } from "@framework/utils";
+import { fetchApi } from "../utils";
 
 class Config {
     private config: ApiConfig;
