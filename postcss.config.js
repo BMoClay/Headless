@@ -10,6 +10,7 @@ module.exports = {
 // //just for testing!
 // module.exports = {
 //     plugins: [
-//         require("tailwindcss")
+//         require("tailwindcss"),
+//         require("autoprefixer")
 //     ]
 //   }
