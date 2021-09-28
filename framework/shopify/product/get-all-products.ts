@@ -1,9 +1,11 @@
 
-import fetchApi from "../utils/fetch-api" // he is saying getAllProductQuery (singular product as opposed to plural products, but I think  // that he is wrong so I put it in as plural as it is defined in get-all-products.ts)
-import getAllProductsQuery from "../utils/queries/get-all-products"
-import { normalizeProduct } from "../utils/normalize"
+import { 
+    fetchApi, 
+    normalizeProduct,
+    getAllProductsQuery 
+ } from "../utils"
 import { ProductConnection } from "../schema"
-import { Product } from "../../common/types/product"
+import { Product } from "@common/types/product"
 
 type ReturnType = {
     products: ProductConnection
