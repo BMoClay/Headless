@@ -1,14 +1,13 @@
-type FetcherParams = {
-    query: string
-} // this is just a more clear way than putting this logic in the fetchApi params async ({ query }: {query: string})
-
-type FetcherResult<T> = { data: T }
+import { 
+    ApiFetcherOptions,
+    ApiFetcherResults
+} from "@common/types/api"
 
 const fetchApi = async <T>({
-    query }: FetcherParams
-): Promise<FetcherResult<T>> => {
-    const url = "http://localhost:4000/graphql" 
-    const res = await fetch(url, {   // dont need to use axios or anything can use plain fetch
+    url,
+    query }: ApiFetcherOptions
+): Promise<ApiFetcherResults<T>> => {
+    const res = await fetch(url, {  
         method: "POST",
         headers: {
             "Content-Type": "application/json"
