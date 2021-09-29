@@ -1,0 +1,30 @@
+
+
+.parent {
+    display: flex;
+    flex-direction: row;
+    height: 1500px;
+}
+
+
+.child {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    margin: 1px;
+
+    /* flex-grow | flex-shrink ?? flex-basis; */
+    /* 1 | 1 | 0 */
+    flex: 1
+}
+
+.child:first-child {
+    flex-basis: 20%;
+
+    /*
+    1680 -3x - (x+ 200) = 0
+    1680 -3x -x 200 = 0
+    1480 -4x = 0
+    1480 = 4x
+    */
+}
