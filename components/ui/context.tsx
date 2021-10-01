@@ -1,20 +1,69 @@
 
-import { createContext, useState, useContext, FC } from 'react'
+import { createContext,
+     useReducer, 
+     useContext, 
+     useMemo, 
+     FC 
+    } from 'react'
 
+export interface StateModifiers {
+    openSidebar: () => void
+    closeSidebar: () => void
+}
 
-const UIContext = createContext<{[key: string]: any}>({
-    uiState: "defaultState"
+export interface StateValues {
+    isSidebarOpen: boolean
+}
+
+const stateModifiers = {
+    openSidebar: () => {},
+    closeSidebar: () => {}
+}
+
+const initialState = { isSidebarOpen: false}
+
+type State = StateValues & StateModifiers
+
+const UIContext = createContext<State>({
+    ...stateModifiers,
+    ...initialState
 })
 
-export const UIProvider: FC = ({ children }) => {
-    const [isSidebarOpen, setSidebarOpen] = useState(false)
+type Action = { type: "OPEN_SIDEBAR" } | { type: "CLOSE_SIDEBAR"}
 
-    const uiState = {
-        isSidebarOpen,
-        setSidebarOpen
+function uiReducer(state: StateValues, action: Action) {
+    switch(action.type) {
+        case "OPEN_SIDEBAR": {
+            return {
+                ...state,
+                isSidebarOpen: true
+            }
+        }
+        case "CLOSE_SIDEBAR": {
+            return {
+                ...state,
+                isSidebarOpen: false
+            }
+        }
     }
+}
+
+export const UIProvider: FC = ({ children }) => {
+    const [state, dispatch] = useReducer(uiReducer, initialState)
+
+    const openSidebar = () => dispatch({type: "OPEN_SIDEBAR"})
+    const closeSidebar = () => dispatch({type: "CLOSE_SIDEBAR"})
+
+    const value = useMemo(() => {
+        return {
+            ...state,
+        openSidebar,
+        closeSidebar
+        }
+    }, [state.isSidebarOpen])
+
     return (
-        <UIContext.Provider value={uiState}>
+        <UIContext.Provider value={value}>
             {children}
         </UIContext.Provider>
     )
