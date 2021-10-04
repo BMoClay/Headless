@@ -35,7 +35,7 @@ const Swatch: FC<Props> = ({
         style={color ? {backgroundColor: color} : {}}
         className={rootClassName}
         {...rest}
-        >
+    >
         { variant === "color" && active && (
             <span>
                 <Check />
