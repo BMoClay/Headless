@@ -16,10 +16,12 @@ interface Props {
 
 const ProductView: FC<Props> = ({ product }) => {
   const [ choices, setChoices ] = useState<Choices>({})
-  const data = useApiProvider()
+  const api = useApiProvider()
+  debugger
   const { openSidebar } = useUI()
   const addItem = useAddItem()
   const variant = getVariant(product, choices)
+  console.log(variant)
 
   const addToCart = () => {
     try {
