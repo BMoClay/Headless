@@ -1,3 +1,3 @@
 
 
-export { default as UseAddItem } from "./use-add-item"
+export { default as useAddItem } from "./use-add-item"
