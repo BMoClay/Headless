@@ -2,13 +2,13 @@ import {
     ApiFetcherOptions,
     ApiFetcherResults
 } from "@common/types/api"
+import { API_URL } from "@framework/const"
 
 const fetchApi = async <T>({
-    url,
     query,
     variables }: ApiFetcherOptions
 ): Promise<ApiFetcherResults<T>> => {
-    const res = await fetch(url, {  
+    const res = await fetch(API_URL!, {  
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -20,8 +20,6 @@ const fetchApi = async <T>({
     })
 
     const { data, errors } = await res.json()
-    // ?? is checking if first left hand expression is null or undefined -> if it is undefined go w expression on right side
-    // || is checking if left hand expression is null, undefined, "", 0, or false
     if (errors) {
         throw new Error(errors[0].message ?? errors.message)
     }
