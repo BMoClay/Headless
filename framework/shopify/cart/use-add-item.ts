@@ -6,15 +6,14 @@ export default useAddItem
 
 
 export const handler = {
-    fetcher: () => {
-        console.log("Fetching Data")
+    fetcher: (input: any) => {
+        return JSON.stringify(input) + "_MODIFIED"
     },
-    useHook: () => {
-        debugger
+    useHook: ({fetch}: any) => {
         return (input: any) => {
-            debugger
+            const response = fetch(input)
             return {
-                output: JSON.stringify(input) + "_MODIFIED"
+                output: response
             }
         }
     }
