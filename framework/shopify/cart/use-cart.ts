@@ -14,17 +14,13 @@ export const handler = {
         input: {checkoutId}
     }: any) {
         let checkout
-
-        debugger
         if (checkoutId) {
-            debugger
             const { data } = await fetch({
                 ...options,
                 variables: {
                     checkoutId
                 }
             })
-            debugger
             checkout = data.node
         } else {
             checkout = await createCheckout(fetch)
