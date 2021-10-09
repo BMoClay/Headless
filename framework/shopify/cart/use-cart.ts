@@ -31,8 +31,7 @@ export const handler = {
             checkout = await createCheckout(fetch)
         }
         
-        const cart = checkoutToCart(checkout)
-        debugger
+        const cart = checkoutToCart(checkout)   
         return cart
     },
     useHook: ({useData}: any) => {
