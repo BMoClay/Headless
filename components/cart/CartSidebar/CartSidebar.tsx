@@ -4,11 +4,12 @@ import cn from "classnames"
 import { useUI } from "@components/ui/context"
 import useCart from "@framework/cart/use-cart"
 import { LineItem } from '@common/types/cart'
+import CartItem from '../CartItem'
 
 const CartSidebar: FC = () => {
   const { closeSidebar } = useUI()
-  const { data, isEmpty } = useCart()
- 
+  const { data, isEmpty, mutate } = useCart()
+
   const rootClass = cn(
     "h-full flex flex-col",
     {"bg-secondary text-secondary": isEmpty}
@@ -50,9 +51,11 @@ const CartSidebar: FC = () => {
             </h2>
           <ul className="py-6 space-y-6 sm:py-0 sm:space-y-0 sm:divide-y sm:divide-accents-3 border-t border-accents-3">
                 { data?.lineItems.map((item: LineItem) =>
-                    <div key={item.id}>
-                      {item.name} - {item.quantity}
-                    </div>
+                <CartItem 
+                  key={item.id}
+                  item={item}
+                  currencyCode={data.currency.code}
+                />
                   )}
           </ul>
         </div>
