@@ -1,5 +1,8 @@
 
 import useCart from "@common/cart/use-cart"
+import { Cart } from "@common/types/cart"
+import { SWRHook } from "@common/types/hooks"
+import { Checkout } from "@framework/schema"
 import { 
     checkoutToCart, 
     createCheckout, 
@@ -7,18 +10,29 @@ import {
 } from "@framework/utils"
 import { useMemo } from "react"
 
+export type UseCartHookDescriptor = {
+    fetcherInput: {
+        checkoutId: string 
+    }
+    fetcherOutput: {
+        node: Checkout
+    }
+    data: Cart
+}
+
 export default useCart
 
-export const handler = {
-    fetchOptions: {
+export const handler: SWRHook<UseCartHookDescriptor> = {
+    fetcherOptions: {
         query: getCheckoutQuery
     },
     async fetcher({
         fetch, 
         options, 
         input: {checkoutId}
-    }: any) {
+    }) {
         let checkout
+
         if (checkoutId) {
             const { data } = await fetch({
                 ...options,
@@ -28,13 +42,13 @@ export const handler = {
             })
             checkout = data.node
         } else {
-            checkout = await createCheckout(fetch)
+            checkout = await createCheckout(fetch as any)
         }
         
         const cart = checkoutToCart(checkout)   
         return cart
     },
-    useHook: ({useData}: any) => {
+    useHook: ({useData}) => {
         const data = useData({
             swrOptions: {
                 revalidateOnFocus: false
