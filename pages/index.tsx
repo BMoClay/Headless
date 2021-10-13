@@ -21,7 +21,7 @@ export async function getStaticProps() {
 export default function Home({
   products
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-
+// makeChanges - slice(0,3) is showing first 3 products
   return (
     <>
       <Grid>

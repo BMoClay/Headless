@@ -11,7 +11,7 @@ interface Props {
 
 const placeholderImage = "/product-image-placeholder.svg"
 const ProductCard: FC<Props> = ({product, variant = "simple" }) => {
-
+    
     return (
         <Link href={`/products/${product.slug}`}>
             <a className={s.root}>
@@ -43,14 +43,16 @@ const ProductCard: FC<Props> = ({product, variant = "simple" }) => {
                             <span className={s.productPrice}>
                                 {product.price.value} {product.price.currencyCode}
                             </span>
-                        </div>
+                        </div> 
+                        {/* makeChanges - alt should be product.alt and i need to make alt descriptions
+                        also height/width/quality/layout */}
                         { product.images && (
                             <Image
                                 className={s.productImage}
                                 alt={product.name ?? "Product image"}
                                 src={product.images[0].url ?? placeholderImage}
                                 height={540}
-                                width={540}
+                                width={360}
                                 quality="85"
                                 layout="responsive"
                             />

@@ -9,6 +9,16 @@ export interface ProductPrice {
     currencyCode: "USD" | "EUR" | string
 }
 
+// makeChanges
+// to add: estimatedCostOfMaterials, ingredients, tags, 
+// collection, stars, reviews, questions, 
+// maxNumberOfItemAvailable, interestFreePaymentPlanPrice
+
+// booleans: alcoholFree, organic, cannabinoid, uniqueStock, 
+// customOrder, subscription, memberPrice, onSale, newItem,
+// inStock, giftOrder
+
+
 export interface ProductOptionValues {
     label: string 
     hexColor?: string
