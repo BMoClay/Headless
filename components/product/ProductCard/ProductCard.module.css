@@ -13,6 +13,8 @@
         }
     }
 
+    /* makeChanges - remove all these colored backgrounds */
+
     &:nth-child(3n + 1) .productBg {
         @apply bg-violet;
     }

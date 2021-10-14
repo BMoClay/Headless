@@ -13,21 +13,18 @@ const Navbar: FC = () => {
                 <div className="flex flex-1 items-center">
                     <Link href="/">
                         <a className={s.logo}>
-                            NEXT_STORE
+                            OLAMINA BOTANICALS
                         </a>
                     </Link>
                     <nav className="ml-6 space-x-6">
                         <Link href="/">
-                            <a className={s.link}>All</a>
+                            <a className={s.link}>About</a>
                         </Link>
                         <Link href="/">
-                            <a className={s.link}>Clothes</a>
+                            <a className={s.link}>Shop</a>
                         </Link>
                         <Link href="/">
-                            <a className={s.link}>Accesories</a>
-                        </Link>
-                        <Link href="/">
-                            <a className={s.link}>Shoes</a>
+                            <a className={s.link}>Contact</a>
                         </Link>
                     </nav>
                     <div className="flex flex-1 justify-end space-x-8" >
